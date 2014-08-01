@@ -1,7 +1,7 @@
 FROM       mini/java
 MAINTAINER Luis Lavena <luislavena@gmail.com>
 
-ENV ELASTICSEARCH_VERSION 0.19.12
+ENV ELASTICSEARCH_VERSION 0.20.6
 
 RUN \
   mkdir -p /opt && \
