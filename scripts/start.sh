@@ -1,7 +1,6 @@
 #!/bin/sh
 
 local ELASTICSEARCH_YML="/opt/elasticsearch/config/elasticsearch.yml"
-local STACK_OPT="-Xss256k"
 
 shutdown() {
   echo "=> Shutdown requested, stopping Elasticsearch..."
@@ -14,7 +13,7 @@ shutdown() {
 
 start() {
 	# launch as background process
-	/opt/elasticsearch/bin/elasticsearch -f $STACK_OPT -Des.config=$ELASTICSEARCH_YML &
+	/opt/elasticsearch/bin/elasticsearch -f -Des.config=$ELASTICSEARCH_YML &
 
   trap shutdown SIGINT SIGTERM
 
