@@ -13,7 +13,7 @@ shutdown() {
 
 start() {
 	# launch as background process
-	/opt/elasticsearch/bin/elasticsearch -f -Des.config=$ELASTICSEARCH_YML &
+	/opt/elasticsearch/bin/elasticsearch -Des.config=$ELASTICSEARCH_YML &
 
   trap shutdown SIGINT SIGTERM
 
