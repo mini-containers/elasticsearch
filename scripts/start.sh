@@ -3,21 +3,28 @@
 local ELASTICSEARCH_YML="/opt/elasticsearch/config/elasticsearch.yml"
 
 shutdown() {
-  echo "=> Shutdown requested, stopping Elasticsearch..."
+	local pid=$1
 
-  curl --silent -XPOST 'http://localhost:9200/_cluster/nodes/_local/_shutdown' > /dev/null
-  sleep 4
+	echo "=> Shutdown requested, stopping Elasticsearch..."
 
-  exit 0
+	curl --silent -XPOST 'http://localhost:9200/_cluster/nodes/_local/_shutdown' > /dev/null
+
+	# wait for process to terminate
+	wait $pid
+
+	# return process exit code
+	exit $?
 }
 
 start() {
 	# launch as background process
 	/opt/elasticsearch/bin/elasticsearch -Des.config=$ELASTICSEARCH_YML &
 
-  trap shutdown SIGINT SIGTERM
+	local pid=$!
 
-  wait
+	trap "shutdown $pid" SIGINT SIGTERM
+
+	wait
 }
 
 start

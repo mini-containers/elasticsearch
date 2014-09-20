@@ -31,6 +31,10 @@ docker run -v /mydata/elasticsearch:/data -d -p 9200:9200 mini/elasticsearch
 We recommend you mount the volume to avoid loosing data between updates to
 the container.
 
+## Sponsor
+
+Work on this was made possible thanks to [AREA 17](http://www.area17.com).
+
 ## License
 
 All the code contained in this repository, unless explicitly stated, is
