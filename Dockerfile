@@ -1,12 +1,12 @@
 FROM       mini/java
 MAINTAINER Luis Lavena <luislavena@gmail.com>
 
-ENV ELASTICSEARCH_VERSION 1.3.4
+ENV ELASTICSEARCH_VERSION 1.3.5
 
 RUN \
   mkdir -p /opt && \
   cd /tmp && \
-  wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
+  wget --progress=dot:mega https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
   tar -xzf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
   rm -rf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
   mv elasticsearch-$ELASTICSEARCH_VERSION /opt/elasticsearch
