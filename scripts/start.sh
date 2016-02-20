@@ -64,6 +64,14 @@ set_identification() {
 	fi
 }
 
+set_network_bind() {
+	local _network=${ELASTICSEARCH_NET:-"any"}
+
+	if [ ! "${_network}" == "any" ]; then
+		echo "=> Using '${_network}' for network binding"
+		ES_OPTS="$ES_OPTS -Des.network.host=${_network}"
+	fi
+}
 shutdown() {
 	local pid=$1
 
@@ -79,9 +87,10 @@ shutdown() {
 }
 
 start() {
-	set_authentication
-	set_identification
+	set_network_bind
 	set_http_port
+	set_identification
+	set_authentication
 
 	# launch as background process
 	/opt/elasticsearch/bin/elasticsearch "$ES_OPTS" &

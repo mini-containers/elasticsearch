@@ -23,6 +23,29 @@ the one being exposed by Docker.
 Note that port `9300` (tcp) is also exposed, but is not required unless you
 want to build a multi-node cluster using this container :wink:
 
+### Network binding
+
+By default, Elasticsearch will bind to the first network interface available,
+but sometimes that is not desired.
+
+Example of this will be the usage of [Weave](http://weave.works/) network and
+ensure Elasticsearch communication happens exclusively over Weave, private
+network and not exposed to the Docker interface.
+
+In this scenario, you can enable this by using `ELASTICSEARCH_NET` and provide
+any of the accepted values as described in Elastic's [network module](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html#network-interface-values)
+documentation.
+
+In the above described example, you will use `_ethwe:ipv4_` as value for the
+environment variable:
+
+```
+docker run -e ELASTICSEARCH_NET=_ethwe:ipv4_ mini/elasticsearch
+```
+
+You can use other network options like ranges, see details described in the
+link provided above.
+
 ### Data and volumes
 
 This container exposes `/data` as bind mount volume. You can mount it when
