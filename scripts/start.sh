@@ -39,20 +39,6 @@ set_authentication() {
 	fi
 }
 
-set_http_cors() {
-	local _cors_enabled=${ELASTICSEARCH_CORS:-"no"}
-	local _cors_origin=${ELASTICSEARCH_ALLOW:-""}
-
-	if [ ${_cors_enabled} == "yes" ]; then
-		if [ "${_cors_origin}" == "" ]; then
-			echo "=> CORS was enabled but no origin was defined. Set `ELASTICSEARCH_ALLOW` for CORS to work."
-		else
-			echo "=> CORS enabled with '${_cors_origin}' as allowed origin."
-			ES_OPTS="$ES_OPTS -Des.http.cors.enabled=true -Des.http.cors.allow-origin=${_cors_origin}"
-		fi
-	fi
-}
-
 set_http_port() {
 	local _http_port=${ELASTICSEARCH_PORT:-"9200"}
 
@@ -86,7 +72,6 @@ set_network_bind() {
 		ES_OPTS="$ES_OPTS -Des.network.host=${_network}"
 	fi
 }
-
 shutdown() {
 	local pid=$1
 
@@ -104,7 +89,6 @@ shutdown() {
 start() {
 	set_network_bind
 	set_http_port
-	set_http_cors
 	set_identification
 	set_authentication
 
