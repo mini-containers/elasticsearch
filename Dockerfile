@@ -14,7 +14,7 @@ RUN \
   tar -xzf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
   rm -rf elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
   mv elasticsearch-$ELASTICSEARCH_VERSION /opt/elasticsearch && \
-  apk del --virtual .install-tools
+  apk del .install-tools
 
 ENV ES_HTTP_BASIC_VERSION 1.5.1
 
