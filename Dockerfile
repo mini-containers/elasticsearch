@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.3
 
-ENV JAVA_VERSION 8.77.03-r0
+ENV JAVA_VERSION 8.92.14-r0
 
 RUN apk add --no-cache openjdk8-jre-base=$JAVA_VERSION pwgen
 
