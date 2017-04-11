@@ -6,11 +6,6 @@ network:
 http:
   port: 9200
 
-# Basic Authentication
-  basic:
-    enabled: false
-    log: false
-
 transport:
   tcp:
     port: 9300

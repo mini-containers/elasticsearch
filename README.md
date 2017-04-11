@@ -58,22 +58,6 @@ docker run -v /mydata/elasticsearch:/data -d -p 9200:9200 mini/elasticsearch
 We recommend you mount the volume to avoid loosing data between updates to
 the container.
 
-## Basic Authentication
-
-While is not a strong security mechanism, Asquera's [http-basic](https://github.com/Asquera/elasticsearch-http-basic) plugin has been added to avoid pesky eyes to your
-Elasticsearch installation.
-
-Define `ELASTICSEARCH_AUTH=yes` to the container's environment and will enable
-default credentials. Default username is `elastic`.
-
-You can adjust both username and password by setting `ELASTICSEARCH_USER` and
-`ELASTICSEARCH_PASS` respectively.
-
-**Important**: If no password is defined, the container will generate one
-randomly on each start. You can inspect the container logs for the generated
-password but is strongly recommended you set one by using the environment
-variables described above.
-
 ## Cluster and Node identification
 
 For development purposes, both cluster and node names might be irrelevant, so
