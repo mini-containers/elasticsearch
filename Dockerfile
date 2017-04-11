@@ -4,7 +4,7 @@ ENV JAVA_VERSION 8.92.14-r0
 
 RUN apk add --no-cache openjdk8-jre-base=$JAVA_VERSION pwgen
 
-ENV ELASTICSEARCH_VERSION 1.7.5
+ENV ELASTICSEARCH_VERSION 1.7.6
 
 RUN \
   apk add --no-cache --virtual .install-tools wget && \
